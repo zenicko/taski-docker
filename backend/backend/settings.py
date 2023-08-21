@@ -3,13 +3,19 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY',
+    'django-insecure-j_89af+30&&4qm*8z9_(^zz8p4-ho8z_m6ylm0s$h!-p@on1_^'
+)
 
-SECRET_KEY = 'django-insecure-j_89af+30&&4qm*8z9_(^zz8p4-ho8z_m6ylm0s$h!-p@on1_^'
+DEBUG = False
 
-DEBUG = True
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
-ALLOWED_HOSTS = []
-
+if os.environ.get('ALLOWED_HOSTS_IP'):
+    ALLOWED_HOSTS.append(os.environ.get('ALLOWED_HOSTS_IP'))
+if os.environ.get('ALLOWED_HOSTS_HOSTNAME'):
+    ALLOWED_HOSTS.append(os.environ.get('ALLOWED_HOSTS_HOSTNAME'))
 
 # Application definition
 
